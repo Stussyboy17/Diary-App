@@ -3,7 +3,6 @@ package com.example.diaryapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.AdapterView;
@@ -11,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -29,9 +27,7 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private ListView list;
     private String [] note_array;
-    private ArrayAdapter<String> adapter;
     public final static String EXTRA_MESSAGE = "EXTRA_MESSAGE";
 
     @Override
@@ -40,14 +36,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         File internalStorageDir = getFilesDir();
         note_array = internalStorageDir.list();
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        list = findViewById(R.id.listView);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1,
-                                        new ArrayList<String>(Arrays.asList(note_array)));
+        ListView list = findViewById(R.id.listView);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1,
+                new ArrayList<>(Arrays.asList(note_array)));
         list.setAdapter(adapter);
-
 
         final FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -98,20 +91,44 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+        File internalStorageDir = getFilesDir();
+        note_array = internalStorageDir.list();
+        ListView list = findViewById(R.id.listView);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1,
+                new ArrayList<>(Arrays.asList(note_array)));
+        list.setAdapter(adapter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        File internalStorageDir = getFilesDir();
+        note_array = internalStorageDir.list();
+        ListView list = findViewById(R.id.listView);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1,
+                new ArrayList<>(Arrays.asList(note_array)));
+        list.setAdapter(adapter);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        File internalStorageDir = getFilesDir();
+        note_array = internalStorageDir.list();
+        ListView list = findViewById(R.id.listView);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1,
+                new ArrayList<>(Arrays.asList(note_array)));
+        list.setAdapter(adapter);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        File internalStorageDir = getFilesDir();
+        note_array = internalStorageDir.list();
+        ListView list = findViewById(R.id.listView);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1,
+                new ArrayList<>(Arrays.asList(note_array)));
+        list.setAdapter(adapter);
     }
 }
