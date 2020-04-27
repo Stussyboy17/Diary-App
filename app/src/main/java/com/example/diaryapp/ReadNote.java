@@ -20,19 +20,18 @@ public class ReadNote extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_note);
+
         text = findViewById(R.id.EditText2);
         final Intent intent = getIntent();
         final String filename = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         Log.d(LOG_TAG, filename);
         try {
-            // открываем поток для чтения
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     openFileInput(filename)));
-            String str = "";
-            String text_from_file = "";
-            // читаем содержимое
+            String str;
+            StringBuilder text_from_file = new StringBuilder();
             while ((str = br.readLine()) != null) {
-                text_from_file += str;
+                text_from_file.append(str);
                 text.setText(text_from_file.toString());
                 Log.d(LOG_TAG, str);
             }
