@@ -22,6 +22,7 @@ public class WriteNote extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_note);
+
         Button save_button = findViewById(R.id.SaveButton);
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override

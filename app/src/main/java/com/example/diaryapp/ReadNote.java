@@ -20,6 +20,7 @@ public class ReadNote extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_note);
+
         text = findViewById(R.id.EditText2);
         final Intent intent = getIntent();
         final String filename = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
