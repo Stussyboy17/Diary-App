@@ -34,35 +34,12 @@ public class WriteNote extends AppCompatActivity {
             public void onClick(View view) {
                 edit_header = findViewById(R.id.NoteHeader);
                 edit_text = findViewById(R.id.EditText);
-                if (filename == null)
-                    Log.d(LOG_TAG, "looser");
-                else
-                    try {
-                        // открываем поток для чтения
-                        BufferedReader br = new BufferedReader(new InputStreamReader(
-                                openFileInput(filename)));
-                        String str;
-                        StringBuilder whole_text = new StringBuilder();
-                        edit_header.setText(br.readLine());
-                        while ((str = br.readLine()) != null) {
-                            whole_text.append(str);
-                            Log.d(LOG_TAG, str);
-                        }
-                        edit_text.setText(whole_text.toString());
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                 header = edit_header.getText().toString();
                 text = edit_text.getText().toString();
                 try {
-                    // отрываем поток для записи
                     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
                             openFileOutput(header, MODE_PRIVATE)));
-                    // пишем данные
                     bw.write(header + "\n" + text);
-                    // закрываем поток
                     bw.close();
                     Log.d(LOG_TAG, "Файл записан");
                 } catch (FileNotFoundException e) {
@@ -74,8 +51,6 @@ public class WriteNote extends AppCompatActivity {
                 closeActivity();
             }
         });
-
-
     }
 
     private void closeActivity() {

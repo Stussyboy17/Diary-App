@@ -25,12 +25,10 @@ public class ReadNote extends AppCompatActivity {
         final String filename = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         Log.d(LOG_TAG, filename);
         try {
-            // открываем поток для чтения
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     openFileInput(filename)));
             String str = "";
             String text_from_file = "";
-            // читаем содержимое
             while ((str = br.readLine()) != null) {
                 text_from_file += str;
                 text.setText(text_from_file.toString());

@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                                         new ArrayList<String>(Arrays.asList(note_array)));
         list.setAdapter(adapter);
 
-        //internalStorageDir.list();
+
         final FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
