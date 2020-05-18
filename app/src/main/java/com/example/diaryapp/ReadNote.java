@@ -15,13 +15,13 @@ import java.io.InputStreamReader;
 public class ReadNote extends AppCompatActivity {
     final String LOG_TAG = "myLogs";
     public final static String EXTRA_MESSAGE = "EXTRA_MESSAGE";
-    private TextView text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_note);
 
-        text = findViewById(R.id.EditText2);
+        TextView text = findViewById(R.id.EditText2);
         final Intent intent = getIntent();
         final String filename = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         Log.d(LOG_TAG, filename);
@@ -41,5 +41,4 @@ public class ReadNote extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }

@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ReadNote"></activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
+        <activity android:name=".CustomApplication" />
+        <activity android:name=".CustomPinActivity" />
+        <activity android:name=".ReadNote" />
         <activity android:name=".WriteNote" />
         <activity
             android:name=".MainActivity"

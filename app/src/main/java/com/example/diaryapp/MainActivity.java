@@ -7,8 +7,11 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
+import com.github.orangegangsters.lollipin.lib.PinCompatActivity;
+import com.github.orangegangsters.lollipin.lib.managers.AppLock;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -17,23 +20,29 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends PinCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private String [] note_array;
     public final static String EXTRA_MESSAGE = "EXTRA_MESSAGE";
+    private static final int REQUEST_CODE_ENABLE = 11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //if (!LockManager.getInstance().getAppLock().isPasscodeSet()) {
+            Intent intent = new Intent(MainActivity.this, CustomPinActivity.class);
+            intent.putExtra(AppLock.EXTRA_TYPE, AppLock.ENABLE_PINLOCK);
+            startActivityForResult(intent, REQUEST_CODE_ENABLE);
+        //}
 
         File internalStorageDir = getFilesDir();
         note_array = internalStorageDir.list();
@@ -64,6 +73,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent_on_click);
             }
         });
+
+        final Button settings = findViewById(R.id.action_settings);
+        /*settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("MyLogs", "SETTINGS");
+                /*final Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });*/
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);

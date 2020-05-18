@@ -1,0 +1,23 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <PreferenceCategory
+        android:text="@string/password_settings"
+        app:title="@string/pin_header">
+
+        <SwitchPreferenceCompat
+            android:id="@+id/Pin"
+            app:key="sync"
+            app:title="@string/password_settings" />
+
+        <Preference
+            android:id="@+id/ChangePin"
+            app:key="sync"
+            app:title="@string/password_change"
+            />
+
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -8,8 +8,8 @@
 
     <EditText
         android:id="@+id/EditText"
-        android:layout_width="407dp"
-        android:layout_height="673dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:autofillHints=""
         android:ems="10"
         android:gravity="start|top"
