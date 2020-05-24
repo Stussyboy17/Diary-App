@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.github.orangegangsters.lollipin.lib.PinCompatActivity;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ReadNote extends AppCompatActivity {
+public class ReadNote extends PinCompatActivity {
     final String LOG_TAG = "myLogs";
     public final static String EXTRA_MESSAGE = "EXTRA_MESSAGE";
 

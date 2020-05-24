@@ -3,18 +3,22 @@ package com.example.diaryapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.github.orangegangsters.lollipin.lib.PinCompatActivity;
 import com.github.orangegangsters.lollipin.lib.managers.AppLock;
+import com.github.orangegangsters.lollipin.lib.managers.LockManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -32,17 +36,12 @@ public class MainActivity extends PinCompatActivity {
     private String [] note_array;
     public final static String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private static final int REQUEST_CODE_ENABLE = 11;
+    private static final int REQUEST_FIRST_RUN_PIN = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //if (!LockManager.getInstance().getAppLock().isPasscodeSet()) {
-            Intent intent = new Intent(MainActivity.this, CustomPinActivity.class);
-            intent.putExtra(AppLock.EXTRA_TYPE, AppLock.ENABLE_PINLOCK);
-            startActivityForResult(intent, REQUEST_CODE_ENABLE);
-        //}
 
         File internalStorageDir = getFilesDir();
         note_array = internalStorageDir.list();
@@ -52,6 +51,11 @@ public class MainActivity extends PinCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1,
                 new ArrayList<>(Arrays.asList(note_array)));
         list.setAdapter(adapter);
+
+        Intent intent = new Intent(MainActivity.this, CustomPinActivity.class);
+        intent.putExtra(AppLock.EXTRA_TYPE, AppLock.UNLOCK_PIN);
+        startActivityForResult(intent, REQUEST_CODE_ENABLE);
+
 
         final FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -74,18 +78,20 @@ public class MainActivity extends PinCompatActivity {
             }
         });
 
-        final Button settings = findViewById(R.id.action_settings);
-        /*settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("MyLogs", "SETTINGS");
-                /*final Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(intent);
-            }
-        });*/
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if (id == R.id.nav_slideshow || id == R.id.settings || id == R.id.nav_settings) {
+                    final Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setDrawerLayout(drawer)
@@ -128,6 +134,7 @@ public class MainActivity extends PinCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_expandable_list_item_1,
                 new ArrayList<>(Arrays.asList(note_array)));
         list.setAdapter(adapter);
+
     }
 
     @Override
@@ -151,4 +158,5 @@ public class MainActivity extends PinCompatActivity {
                 new ArrayList<>(Arrays.asList(note_array)));
         list.setAdapter(adapter);
     }
+
 }

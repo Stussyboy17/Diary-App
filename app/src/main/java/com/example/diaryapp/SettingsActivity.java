@@ -6,7 +6,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 
-public class SettingsActivity extends AppCompatActivity {
+import com.github.orangegangsters.lollipin.lib.PinCompatActivity;
+
+public class SettingsActivity extends PinCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
